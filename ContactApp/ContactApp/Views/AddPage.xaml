@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ContactApp.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:ContactApp.CustomControls"
+             x:Class="ContactApp.ContactAddPage"
+             Title="Add"
+             Shell.TitleColor="Black"
+             Shell.BackgroundColor="Transparent"
+             Shell.ForegroundColor="Black" >
+    <ContentPage.BindingContext>
+        <viewModels:AddContactViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout Spacing="3" Padding="15">
+        <Label  Text="Name" FontSize="Medium" />
+        <local:MyEntry Placeholder="Enter first name" Text="{Binding FirstName}" FontSize="Medium"/>
+        <Label Text="Surname" FontSize="Medium" />
+        <local:MyEntry Placeholder="Enter surname" Text="{Binding LastName}"  FontSize="Medium"/>
+        <Label Text="Number" FontSize="Medium"/>
+        <local:MyEntry Placeholder="Enter the number" Keyboard="Numeric"  Text="{Binding PhoneNumber}"  FontSize="Medium">
+            <Entry.Behaviors>
+                <xct:MaskedBehavior Mask="XXXXXXXXXX" />
+            </Entry.Behaviors>
+        </local:MyEntry>
+        <Label Text="Email" FontSize="Medium" />
+        <local:MyEntry Placeholder="Enter the email" Text="{Binding Email}"  FontSize="Medium">
+            <Entry.Behaviors>
+                <xct:EmailValidationBehavior
+                        x:Name="EmailValidator"
+                        DecorationFlags="Trim"
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"/>
+            </Entry.Behaviors>
+        </local:MyEntry>
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="Cancel" Clicked="Cancel_Clicked" Text="Cancel"  HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save" x:Name="SaveButton" Command="{Binding SaveCommand}"  HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

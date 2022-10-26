@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContactApp.ContactPersonDetail"
+            xmlns:viewModels="clr-namespace:ContactApp.ViewModels"            
+            Title="Contact Detail"
+             Shell.BackgroundColor="Transparent"
+             Shell.ForegroundColor="Black">
+            
+    <ContentPage.BindingContext>
+        <viewModels:PersonDetailViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="220"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <BoxView Color="White"/>
+            <Label Text="Row 0, Column 0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            <Label Text="{Binding Contact.FirstName}"                
+                   HorizontalOptions="Center"
+                   TextColor="Black"
+                   FontSize="20"
+                   Margin="8,190,0,0"/>
+            <Button           
+                Text="C"                                     
+                BackgroundColor="Gray"
+                BorderRadius="100" 
+                TextColor="White"             
+                WidthRequest="140"
+                HeightRequest="140"            
+                Margin="30,10,20,60"
+                HorizontalOptions="Center"
+                FontSize="50"/>
+            <ImageButton Source="DeleteLogo.png"
+                Command="{Binding DeleteCommand}"
+                BackgroundColor="Transparent"       
+                HorizontalOptions="End" 
+                WidthRequest="35"
+                HeightRequest="30"
+                Margin="0,00,60,50"
+                VerticalOptions="End"/>
+            <ImageButton Source="EditLogo.png" 
+                BorderColor="Black"
+                BackgroundColor="Transparent"          
+                HorizontalOptions="End" 
+                WidthRequest="35"
+                HeightRequest="30"
+                Margin="0,00,20,50"
+                VerticalOptions="End"/>
+            <BoxView Grid.Row="1"
+                Color="Transparent"/>
+            <Label Grid.Row="1"
+               x:Name="DialNumber"
+               Text="{Binding Number}"
+               TextColor="Black"
+               Margin="20,10,20,0"  
+               VerticalOptions="Start" />
+            <Label Grid.Row="1"
+               Text="{Binding Contact.Email}"              
+               Margin="20,10,20,0"  
+               VerticalOptions="End"
+               FontSize="10"/>
+            <ImageButton Source="MessageLogo.png"
+                Grid.Row="1"
+                Command="{Binding Messagecommand}"
+                BackgroundColor="Transparent"
+                HorizontalOptions="End" 
+                WidthRequest="45"
+                HeightRequest="65"
+                Margin="0,0,10,10"
+                VerticalOptions="End"/>
+            <ImageButton Source="ContactLogo.png"
+                Grid.Row="1"  
+                x:Name="DialButton"               
+                Command="{Binding DialCommand}"
+                BackgroundColor="Transparent"
+                HorizontalOptions="End" 
+                WidthRequest="40"
+                HeightRequest="50"
+                Margin="10,0,60,10"
+                VerticalOptions="End"/>
+            <BoxView Grid.Row="2"
+                Color="white"/>
+            <Label Grid.Row="2"
+                Margin="15,0,0,0"
+                Text="Call history" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
